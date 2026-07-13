@@ -1,0 +1,6 @@
+data/
+catboost_info/
+__pycache__/
+*.pyc
+*.snapshot
+scripts/

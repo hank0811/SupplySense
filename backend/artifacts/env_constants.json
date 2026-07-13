@@ -1,0 +1,14 @@
+{
+  "sales_scale": 382.75551215817427,
+  "profit_scale": 45.835727263520575,
+  "delivery_scale": 4.2753621748352,
+  "max_inventory": 200.0,
+  "max_demand": 20.0,
+  "mean_pred_sales": 183.5946385551276,
+  "mean_pred_profit": 22.064804617936023,
+  "mean_pred_delivery": 3.4946500165507057,
+  "mean_unit_price": 142.31104842474608,
+  "holding_cost_rate": 0.5,
+  "stockout_penalty_rate": 8.0,
+  "reorder_unit_cost_rate": 0.6
+}
