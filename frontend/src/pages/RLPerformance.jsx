@@ -57,7 +57,7 @@ export default function RLPerformance() {
 
       {data && (
         <>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Panel><Stat label="Starting reward" value={first.mean_episode_reward.toFixed(0)} accent="red" hint="update 0" /></Panel>
             <Panel><Stat label="Best rolling mean" value={best.toFixed(0)} accent="teal" hint={`of ${data.history.length} updates`} /></Panel>
             <Panel><Stat label="Final reward" value={last.mean_episode_reward.toFixed(0)} accent="amber" hint={`rolling ${last.rolling_mean_reward.toFixed(0)}`} /></Panel>

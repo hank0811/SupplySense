@@ -61,8 +61,8 @@ export default function TryIt() {
         </p>
       </div>
 
-      <div className="grid grid-cols-5 gap-5">
-        <Panel className="col-span-2" title="Scenario inputs">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+        <Panel className="lg:col-span-2" title="Scenario inputs">
           <div className="space-y-6">
             <Slider label="Current inventory" value={inventory} onChange={setInventory} min={0} max={100} step={1} unit=" units" />
             <Slider label="Pending demand" value={demand} onChange={setDemand} min={0} max={20} step={1} unit=" units" />
@@ -70,15 +70,15 @@ export default function TryIt() {
           </div>
         </Panel>
 
-        <Panel className="col-span-3" title="Agent decision" subtitle="PPO policy mean action (deterministic)">
+        <Panel className="lg:col-span-3" title="Agent decision" subtitle="PPO policy mean action (deterministic)">
           {loading && !result && <Loading label="Querying policy" />}
           {error && <ErrorBox message={error} />}
           {result && (
             <div className="space-y-5">
-              <div className="flex items-end gap-4">
+              <div className="flex flex-wrap items-end gap-4">
                 <div>
                   <p className="mono text-[10.5px] uppercase tracking-wider text-[var(--color-muted)]">Reorder quantity</p>
-                  <p className="mono text-5xl font-semibold text-[var(--color-amber)] tabular mt-1">
+                  <p className="mono text-4xl sm:text-5xl font-semibold text-[var(--color-amber)] tabular mt-1">
                     {result.reorder_qty}
                     <span className="text-lg text-[var(--color-muted)] ml-2">units</span>
                   </p>
@@ -88,7 +88,7 @@ export default function TryIt() {
                 </Pill>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 pt-2 border-t border-[var(--color-border)]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 border-t border-[var(--color-border)]">
                 <Stat label="Units sold" value={result.projected_outcome.units_sold} />
                 <Stat label="Stockout" value={result.projected_outcome.stockout_units} accent={result.projected_outcome.stockout_units > 0 ? 'red' : 'text'} />
                 <Stat label="Leftover" value={result.projected_outcome.leftover_inventory} />

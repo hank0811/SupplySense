@@ -85,24 +85,26 @@ export default function Compare() {
       {data && (
         <>
           <Panel title="Table 7.1 — Existing vs. Proposed" subtitle={`${data.baseline.n_episodes} episodes each · ${data.episode_length} steps/episode`}>
-            <table className="w-full text-[13px]">
-              <thead>
-                <tr className="text-left border-b border-[var(--color-border)]">
-                  <th className="pb-2 font-medium text-[var(--color-muted)] mono text-[11px] uppercase tracking-wide">Metric</th>
-                  <th className="pb-2 font-medium text-[var(--color-muted)] mono text-[11px] uppercase tracking-wide text-right">Existing (baseline)</th>
-                  <th className="pb-2 font-medium text-[var(--color-amber)] mono text-[11px] uppercase tracking-wide text-right">Proposed (PPO)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map(([label, b, r]) => (
-                  <tr key={label} className="border-b border-[var(--color-border)]/50 last:border-0">
-                    <td className="py-2.5 text-[var(--color-muted)]">{label}</td>
-                    <td className="py-2.5 mono tabular text-right">{b.toFixed(1)}</td>
-                    <td className="py-2.5 mono tabular text-right text-[var(--color-amber)]">{r.toFixed(1)}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[420px] text-[13px]">
+                <thead>
+                  <tr className="text-left border-b border-[var(--color-border)]">
+                    <th className="pb-2 font-medium text-[var(--color-muted)] mono text-[11px] uppercase tracking-wide">Metric</th>
+                    <th className="pb-2 font-medium text-[var(--color-muted)] mono text-[11px] uppercase tracking-wide text-right">Existing (baseline)</th>
+                    <th className="pb-2 font-medium text-[var(--color-amber)] mono text-[11px] uppercase tracking-wide text-right">Proposed (PPO)</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {rows.map(([label, b, r]) => (
+                    <tr key={label} className="border-b border-[var(--color-border)]/50 last:border-0">
+                      <td className="py-2.5 text-[var(--color-muted)] whitespace-nowrap">{label}</td>
+                      <td className="py-2.5 mono tabular text-right">{b.toFixed(1)}</td>
+                      <td className="py-2.5 mono tabular text-right text-[var(--color-amber)]">{r.toFixed(1)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <div className="mt-4">
               <Pill tone={improvement >= 0 ? 'teal' : 'red'}>
                 {improvement >= 0 ? '+' : ''}{improvement.toFixed(1)}% mean-reward change vs. baseline
@@ -110,7 +112,7 @@ export default function Compare() {
             </div>
           </Panel>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Panel title="Mean reward &amp; volatility">
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={barData} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>

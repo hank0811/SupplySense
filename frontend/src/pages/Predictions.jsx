@@ -59,12 +59,12 @@ export default function Predictions() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="mono text-[11px] uppercase tracking-widest text-[var(--color-amber)] mb-2">Predictions</p>
           <h1 className="text-2xl font-semibold tracking-tight">CatBoost model diagnostics</h1>
         </div>
-        <div className="flex gap-1.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-1">
+        <div className="flex gap-1.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-1 self-start">
           {TARGETS.map((t) => (
             <button
               key={t.key}
@@ -84,7 +84,7 @@ export default function Predictions() {
 
       {d && (
         <>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Panel><Stat label="RMSE" value={d.metrics.rmse.toFixed(2)} unit={meta.unit} accent="amber" /></Panel>
             <Panel><Stat label="MAE" value={d.metrics.mae.toFixed(2)} unit={meta.unit} accent="amber" /></Panel>
             <Panel>
@@ -92,7 +92,7 @@ export default function Predictions() {
             </Panel>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <Panel title="Actual vs. Predicted" subtitle={`${d.n_test.toLocaleString()} held-out rows · ${scatterData.length} sampled`}>
               <ResponsiveContainer width="100%" height={280}>
                 <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
